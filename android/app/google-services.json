@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "651485111989",
+    "project_id": "flight-project-3f9bb",
+    "storage_bucket": "flight-project-3f9bb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:651485111989:android:2033849a3fbab6af3ac0fc",
+        "android_client_info": {
+          "package_name": "com.example.flight_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOMyMNx9i0_rzRuM2HJzZlju6Y9LULbdY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
