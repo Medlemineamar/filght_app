@@ -3,6 +3,7 @@
 import 'package:flight_app/app_constants.dart';
 import 'package:flight_app/config.dart';
 import 'package:flight_app/controllers/main_controller.dart';
+import 'package:flight_app/screens/trips_screen.dart';
 import 'package:flight_app/widget/my_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -25,7 +26,7 @@ class HomeScreen extends StatefulWidget {
 
 class HomeScreenState extends State<HomeScreen> {
   List<String> types =["one way", "Two ways"];
-  List<String> classes =["Economey", "Busines"];
+  List<String> classes =["economy", "Busines"];
 
   String? selectedType;
   String?  selectedClasse;
@@ -205,7 +206,14 @@ class HomeScreenState extends State<HomeScreen> {
                           ),
 
                           SizedBox(height: fullHeight(context) * 0.04),
-                          MyButton(title: "Search",onPressed: (){},)
+                          MyButton(title: "Search",onPressed: (){
+                              int? passangers = passangersController.text==""?null:  int.parse(passangersController.text);
+
+                            Get.to(TripsScrren(type: selectedType, 
+                            classe: selectedClasse!, date: dateController.text,
+                             from: fromController.text, passangers:passangers ,
+                              to: toController.text));
+                          },)
                            
                         ],
                       ),
