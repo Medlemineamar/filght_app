@@ -87,7 +87,7 @@ class LoginScreen extends StatelessWidget {
                                 _authController.passwordController.text);
                             if (loginResult == true) {
                               _authController.setIsLoading(false);
-                              Get.off(HomeScreen());
+                              Get.off(HomeScreen()); // go to home screen
                             } else {
                               _authController.setIsLoading(false);
                               showSnackbarError('Login failed !');
@@ -100,7 +100,7 @@ class LoginScreen extends StatelessWidget {
                 Center(
                   child: GestureDetector(
                     onTap: () {
-                      Get.to(SignUpScreen());
+                      Get.to(SignUpScreen());//go to sign up screen
                     },
                     child: RichText(
                       text: const TextSpan(

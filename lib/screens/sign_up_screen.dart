@@ -97,7 +97,7 @@ class SignUpScreen extends StatelessWidget {
                                   _authController.passwordController.text);
                               _authController.setIsLoading(false);
                               if (loginResult == true) {
-                                Get.off(HomeScreen());
+                                Get.off(HomeScreen());//go to home screen
                               } else {
                                 showSnackbarError('Login failed !');
                               }
@@ -108,7 +108,7 @@ class SignUpScreen extends StatelessWidget {
                 SizedBox(height: fullHeight(context) * 0.03),
                 Center(
                   child: GestureDetector(
-                    onTap: () => Get.to(LoginScreen()),
+                    onTap: () => Get.to(LoginScreen()),//go to login screen
                     child: RichText(
                       text: const TextSpan(
                         text: "Already have an account? ",

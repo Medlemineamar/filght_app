@@ -58,7 +58,7 @@ class _TripsScrrenState extends State<TripsScrren> {
               child: Center(child: Row(
                 // mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  IconButton(onPressed: (){
+                  IconButton(onPressed: (){//go to the previous screen
                         Get.back();
                   }, icon: Icon(Icons.arrow_back , color: Colors.white,)),
                   Text('Search results',style: TextStyle(
