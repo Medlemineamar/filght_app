@@ -1,7 +1,7 @@
+import 'package:flight_app/screens/home_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_with_firebase/config.dart';
-import 'package:flutter_with_firebase/widget/my_button.dart';
-import 'package:flutter_with_firebase/widget/my_text_filed.dart';
+import 'package:flight_app/config.dart';
+import 'package:flight_app/widget/my_button.dart';
 import 'package:get/get.dart';
 
 import '../app_constants.dart';
@@ -9,7 +9,7 @@ import '../controllers/auth_controller.dart';
 import '../services/firebase_service.dart';
 import '../utils.dart';
 import 'login_screen.dart';
-import 'main_screen.dart';
+// import 'main_screen.dart';
 
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({super.key});
@@ -22,48 +22,68 @@ class SignUpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 18.0),
+        padding: const EdgeInsets.symmetric(horizontal: 50.0),
         child: SingleChildScrollView(
           child: Form(
             key: _formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                SizedBox(height: AppBar().preferredSize.height * 2),
+                SizedBox(height: AppBar().preferredSize.height * 3),
                 Align(
                   alignment: AlignmentDirectional.topStart,
-                  child: Image.asset(
-                    AppConstants.appLogo,
-                    width: fullWidth(context) * 0.22,
-                  ),
+                  child:AppConstants.appIcon
+              
                 ),
                 SizedBox(height: fullHeight(context) * 0.06),
                 const Text(
-                  'Create Account',
+                  'registration',
                   style: TextStyle(
-                    color: Colors.pink,
-                    fontSize: 32.0,
+                    color: Colors.black,
+                    fontSize: 40.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const Text("Enter your details for a new account"),
+                SizedBox(height: fullHeight(context) * 0.01),
+               SizedBox(height: 50.0,
+                          width: 130,
+                          child:Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Divider(color: Colors.black,thickness: 4,height: 20,),
+                            ],
+                          )),
                 // SizedBox(height: fullHeight(context) * 0.04),
                 // MyTextFiled(hint: 'Full name'),
                 SizedBox(height: fullHeight(context) * 0.02),
-                MyTextFiled(
-                    hint: 'Enter Email Address',
-                    controller: _authController.emailController),
-                SizedBox(height: fullHeight(context) * 0.02),
-                MyTextFiled(
-                    hint: 'Password',
-                    hasIcon: true,
-                    controller: _authController.passwordController),
-                SizedBox(height: fullHeight(context) * 0.01),
-                const Row(
-                  children: [
-                    Text("I accept the Terms of Service & Privacy Policy"),
-                  ],
+                TextFormField(
+                  
+                  decoration: InputDecoration(labelText: 'Name',labelStyle: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 30,),
+                    ),
+                  keyboardType: TextInputType.emailAddress,
                 ),
+                SizedBox(height: fullHeight(context) * 0.02),
+                TextFormField(
+                  controller: _authController.emailController,
+                  decoration: InputDecoration(labelText: 'Email',labelStyle: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 30,
+                  )),
+                  keyboardType: TextInputType.emailAddress,
+                ),
+                SizedBox(height: fullHeight(context) * 0.02),
+                TextFormField(
+                  controller: _authController.passwordController,
+                  decoration: InputDecoration(labelText: 'Password',labelStyle: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 30,
+                  )),
+                  keyboardType: TextInputType.emailAddress,
+                ),
+                
+                
                 SizedBox(height: fullHeight(context) * 0.04),
                 Obx(
                   () => _authController.isLoading.value
@@ -77,7 +97,7 @@ class SignUpScreen extends StatelessWidget {
                                   _authController.passwordController.text);
                               _authController.setIsLoading(false);
                               if (loginResult == true) {
-                                Get.off(MainScreen());
+                                Get.off(HomeScreen());
                               } else {
                                 showSnackbarError('Login failed !');
                               }
@@ -93,7 +113,7 @@ class SignUpScreen extends StatelessWidget {
                       text: const TextSpan(
                         text: "Already have an account? ",
                         style: TextStyle(
-                            color: Colors.grey, fontWeight: FontWeight.w500),
+                            color: Colors.black, fontWeight: FontWeight.w500),
                         children: <TextSpan>[
                           TextSpan(
                               text: 'Login Here',

@@ -1,8 +1,9 @@
+import 'package:flight_app/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flight_app/config.dart';
 // import 'package:flight_app/screens/forgot_password_screen.dart';
 import 'package:flight_app/widget/my_button.dart';
-import 'package:flight_app/widget/my_text_filed.dart';
+// import 'package:flight_app/widget/my_text_filed.dart';
 import 'package:get/get.dart';
 
 import '../app_constants.dart';
@@ -24,45 +25,57 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 18.0),
+        padding: const EdgeInsets.symmetric(horizontal: 50.0),
         child: SingleChildScrollView(
           child: Form(
             key: _formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                SizedBox(height: AppBar().preferredSize.height * 2),
+                SizedBox(height: AppBar().preferredSize.height * 3),
                 Align(
                   alignment: AlignmentDirectional.topStart,
-                  child: Image.asset(
-                    AppConstants.appLogo,
-                    width: fullWidth(context) * 0.22,
-                  ),
+                  child:AppConstants.appIcon
                 ),
-                SizedBox(height: fullHeight(context) * 0.06),
+               SizedBox(height: fullHeight(context) * 0.04),
                 const Text(
-                  'Welcome Back',
+                  'Connection',
                   style: TextStyle(
-                    color: Colors.pink,
-                    fontSize: 32.0,
+                    
+                    fontSize: 40.0,
                     fontWeight: FontWeight.bold,
                   ),
+
                 ),
-                const Text("Login to your minifurs account"),
-                SizedBox(height: fullHeight(context) * 0.04),
-                MyTextFiled(
-                  hint: 'Enter Email Address',
+                SizedBox(height: fullHeight(context) * 0.01),
+                 SizedBox(height: 50.0,
+                          width: 130,
+                          child:Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Divider(color: Colors.black,thickness: 4,height: 20,),
+                            ],
+                          ),),
+                TextFormField(
                   controller: _authController.emailController,
+                  decoration: InputDecoration(labelText: 'Email',labelStyle: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 30,),
+                    ),
+                  keyboardType: TextInputType.emailAddress,
                 ),
                 SizedBox(height: fullHeight(context) * 0.02),
-                MyTextFiled(
-                  hint: 'Password',
-                  hasIcon: true,
+                TextFormField(
                   controller: _authController.passwordController,
+                  decoration: InputDecoration(labelText: 'Password',labelStyle: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 30,
+                  )),
+                  keyboardType: TextInputType.emailAddress,
                 ),
                 SizedBox(height: fullHeight(context) * 0.01),
 
-                SizedBox(height: fullHeight(context) * 0.04),
+                SizedBox(height: fullHeight(context) * 0.12),
                 Obx(() => _authController.isLoading.value
                     ? const Center(child: CircularProgressIndicator())
                     : MyButton(
@@ -74,13 +87,14 @@ class LoginScreen extends StatelessWidget {
                                 _authController.passwordController.text);
                             if (loginResult == true) {
                               _authController.setIsLoading(false);
-                              // Get.to(MainScreen());
+                              Get.off(HomeScreen());
                             } else {
                               _authController.setIsLoading(false);
                               showSnackbarError('Login failed !');
                             }
                           }
                         },
+                       
                         title: 'Log In')),
                 SizedBox(height: fullHeight(context) * 0.03),
                 Center(
@@ -92,12 +106,12 @@ class LoginScreen extends StatelessWidget {
                       text: const TextSpan(
                         text: "Don't have an account ? ",
                         style: TextStyle(
-                            color: Colors.grey, fontWeight: FontWeight.w500),
+                            color: Colors.black, fontWeight: FontWeight.w500),
                         children: <TextSpan>[
                           TextSpan(
                               text: 'Create Account Here',
                               style: TextStyle(
-                                  color: AppConstants.secondColor,
+                                  color: Colors.blue,
                                   fontWeight: FontWeight.w500)),
                         ],
                       ),

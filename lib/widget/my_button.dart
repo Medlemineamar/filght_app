@@ -1,17 +1,17 @@
+import 'package:flight_app/app_constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_with_firebase/app_constants.dart';
 
 import '../config.dart';
 
 class MyButton extends StatefulWidget {
   final Function()? onPressed;
-  final String? title;
+  final String  title;
   final Color color;
   final Color textColor;
-  const MyButton({
+  const MyButton({ 
     super.key,
-    this.onPressed,
-    this.title,
+    this.onPressed,  
+    required this.title,
     this.color = AppConstants.primaryColor,
     this.textColor = Colors.white,
   });
@@ -31,6 +31,9 @@ class _MyButtonState extends State<MyButton> {
           style: ElevatedButton.styleFrom(
               backgroundColor: widget.color,
               elevation: 3,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30)
+              ),
               foregroundColor: widget.textColor,
               textStyle: TextStyle(
                   fontWeight: FontWeight.w800,
