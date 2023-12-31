@@ -6,6 +6,7 @@ import 'package:flight_app/models/flight.dart';
 import 'package:flight_app/services/flight_service.dart';
 import 'package:flight_app/widget/trip_card.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class TripsScrren extends StatefulWidget {
   final String? type;
@@ -31,7 +32,7 @@ class _TripsScrrenState extends State<TripsScrren> {
     log(dateTime.toString());
     print(dateTime);
     flights = await FlightService().getFlights(depart: widget.from, destination: widget.to, 
-    date: widget.date, classe: widget.classe , passangers: widget.passangers,);
+    date: widget.date, classe: widget.classe , passangers: widget.passangers, type: widget.type);
     setState(() {});
     log(flights.toString());
   }
@@ -58,7 +59,7 @@ class _TripsScrrenState extends State<TripsScrren> {
                 // mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   IconButton(onPressed: (){
-
+                        Get.back();
                   }, icon: Icon(Icons.arrow_back , color: Colors.white,)),
                   Text('Search results',style: TextStyle(
                     color: Colors.white,fontSize: 25,fontWeight: FontWeight.w500

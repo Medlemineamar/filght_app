@@ -45,7 +45,7 @@ class HomeScreenState extends State<HomeScreen> {
             Container(
               height: 200,
               color: AppConstants.primaryColor,
-              child: Center(child: Text('Chose Your Trib',style: TextStyle(
+              child: Center(child: Text('Chose Your Trip',style: TextStyle(
                 color: Colors.white,fontSize: 25,fontWeight: FontWeight.w500
               ),),),
             ),
@@ -102,18 +102,17 @@ class HomeScreenState extends State<HomeScreen> {
                                           
                                              child: TextFormField(
                                               controller: fromController,
-                                              decoration: InputDecoration(labelText: 'From',labelStyle: TextStyle(
-                                                color: Colors.white,fontSize: 20,fontWeight: FontWeight.w600
-                                              )),style: TextStyle(color: Colors.white),),
+                                              decoration: AppConstants.getInputDecoration("From")
+                                              ,style: TextStyle(color: Colors.white),),
                                            ),
                                            SizedBox(width: 70,),
                                            Container(
                                             width: 100,
                                              child: TextFormField(
                                               controller:  toController,
-                                              decoration: InputDecoration(labelText: 'To',labelStyle: TextStyle(
-                                                color: Colors.white,fontSize: 20,fontWeight: FontWeight.w600
-                                              )),cursorWidth: 12,style: TextStyle(color: Colors.white),),
+                                              decoration: AppConstants.getInputDecoration("To"),
+                                              
+                                              cursorWidth: 12,style: TextStyle(color: Colors.white),),
                                            ),
                                          ],
                                        ),
@@ -128,15 +127,13 @@ class HomeScreenState extends State<HomeScreen> {
                                              child: TextFormField(
                                               controller:dateController ,
                                               
-                                              decoration: InputDecoration(labelText: 'Date',labelStyle: TextStyle(
-                                                color: Colors.white,fontSize: 20,fontWeight: FontWeight.w600
-                                              )),
+                                              decoration: AppConstants.getInputDecoration("Date"),
                                               
                                               onTap: ()async{
                                                 var pickedDate = await showDatePicker(context: context, 
                                                 initialDate: DateTime.now(), 
-                                                firstDate: DateTime(2022),
-                                                 lastDate: DateTime(2024),
+                                                firstDate: DateTime(2020),
+                                                 lastDate: DateTime(2030),
                                                  );
                                                 
                                                  
@@ -150,9 +147,7 @@ class HomeScreenState extends State<HomeScreen> {
                                             width: 110,
                                              child: DropdownButtonFormField<String?>(
                                               dropdownColor: AppConstants.primaryColor,
-                                              decoration: InputDecoration(labelText: 'Type',labelStyle: TextStyle(
-                                                color: Colors.white,fontSize: 20,fontWeight: FontWeight.w600
-                                              )),
+                                             decoration: AppConstants.getInputDecoration("Type"),
                                               style: TextStyle(color: Colors.white),
                                              
                                               items:types.map((e) => DropdownMenuItem<String?>(child:Text(e),value: e,)).toList() ,
@@ -173,18 +168,16 @@ class HomeScreenState extends State<HomeScreen> {
                                          children: [
                                            Container(
                                             width: 100,
-                                             child: TextFormField(decoration: InputDecoration(labelText: 'Passangers',labelStyle: TextStyle(
-                                                color: Colors.white,fontSize: 20,fontWeight: FontWeight.w600
-                                              )), style: TextStyle(color: Colors.white),),
+                                             child: TextFormField(
+                                              controller: passangersController,
+                                               decoration: AppConstants.getInputDecoration("Passangers"), style: TextStyle(color: Colors.white),),
                                            ),
                                            SizedBox(width: 70,),
                                            Container(
                                             width: 100,
                                              child:DropdownButtonFormField<String?>(
                                               dropdownColor: AppConstants.primaryColor,
-                                              decoration: InputDecoration(labelText: 'Classes',labelStyle: TextStyle(
-                                                color: Colors.white,fontSize: 20,fontWeight: FontWeight.w600
-                                              )),
+                                              decoration: AppConstants.getInputDecoration("Class"),
                                               style: TextStyle(color: Colors.white, ),
                                              
                                               items:classes.map((e) => DropdownMenuItem<String?>(child:Text(e),value: e,)).toList() ,
@@ -206,7 +199,9 @@ class HomeScreenState extends State<HomeScreen> {
                           ),
 
                           SizedBox(height: fullHeight(context) * 0.04),
-                          MyButton(title: "Search",onPressed: (){
+                          MyButton(title: "Search",
+                          //go to sreach screen
+                          onPressed: (){
                               int? passangers = passangersController.text==""?null:  int.parse(passangersController.text);
 
                             Get.to(TripsScrren(type: selectedType, 
