@@ -38,9 +38,9 @@ class TripCard extends StatelessWidget {
     
                   RichText(
                     text: TextSpan(
-                      style: TextStyle(color: Colors.grey[700]),
+                      style: TextStyle(color: flight.isBestPrice ? Colors.red: Colors.grey[700]),
                       children: [
-                        TextSpan(text: flight.price.toString(), style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                        TextSpan(text: flight.price.toString(), style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold )),
                         TextSpan(text: " MRU"),
                       ]
                     ),

@@ -33,6 +33,7 @@ class _TripsScrrenState extends State<TripsScrren> {
     print(dateTime);
     flights = await FlightService().getFlights(depart: widget.from, destination: widget.to, 
     date: widget.date, classe: widget.classe , passangers: widget.passangers, type: widget.type);
+    if(flights!=null) Flight.flagBestPrice(flights!);
     setState(() {});
     log(flights.toString());
   }

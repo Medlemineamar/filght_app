@@ -11,6 +11,8 @@ class Flight{
   int price;
   String airplane;
 
+  bool isBestPrice = false;
+
   Flight({required this.depart, required this.depart_time, required this.arrival_time,
           required this.airplane, required this.price,
           required this.destination,required this.date,
@@ -27,6 +29,22 @@ class Flight{
       classe: json["classe"]);
   }
 
-  
+  static void flagBestPrice(List<Flight> flights){
+
+    if(flights.isEmpty) return;
+
+    int min=  flights[0].price;
+    int minIndex=  0;
+
+
+
+    for (int i =0 ; i<flights.length; i++){
+      if(flights[i].price < min){
+        min = flights[i].price;
+        minIndex = i;
+      }
+    }
+    flights[minIndex].isBestPrice=true;
+  }
   
 }
